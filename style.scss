@@ -1,0 +1,200 @@
+$sample-color1: #f7f2b4;
+$sample-color2: #bdf7f1;
+$sample-color3: #ceccf3;
+
+$white: #ffffff;
+$black: #5a5a5a;
+
+$header-color: #57d5d1;
+$footer-color: #2f5167;
+$period-color: #ff4a4a;
+$line-color: #e0e0e0;
+$border-color: #dddddd;
+$text-color: #424242;
+
+$border-weight: px;
+
+@mixin backPattern($back-color) {
+	background-color: $back-color;
+	background-image: linear-gradient(0deg, transparent calc(100% - 1px), $white calc(100% - 1px)),
+	linear-gradient(90deg, transparent calc(100% - 1px), $white calc(100% - 1px));
+	background-size: 30px 30px;
+	background-repeat: repeat;
+	border: 3px solid $back-color;
+	& div, li {
+		-webkit-text-stroke: 3px $back-color;
+		& span {
+			-webkit-text-stroke: 0;
+			position: absolute;
+			color: $white;
+		}
+	}
+}
+
+@mixin backColor {
+	background-color: transparent;
+}
+
+@mixin h3 {
+	font-size: 21px;
+	font-weight: bolder;
+	border-bottom: 2px solid $line-color;
+	padding-bottom: 12px;
+	margin-bottom: 34px;
+}
+
+@mixin content($color, $value) {
+	$darken-color: darken($color, $value);
+	margin-right: 30px;
+	float: left;
+	& .img-area {
+		height: 200px;
+		width: 150px;
+		border: 1px solid rgba($darken-color, 0.2);
+		border-radius: 6px;
+		background-color: $color;
+	}
+	& .item-name {
+		margin: -60px 20% 0 20%;
+		padding: 6px;
+		text-align: center;
+		letter-spacing: 0.05em;
+		color: $darken-color;
+		border: 1px solid rgba($darken-color, 0.4);
+		background-color: $white;
+		border-radius: 2em;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+ul {
+	margin: 0;
+}
+
+li {
+	list-style: none;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	min-width: 880px;
+}
+
+/* ~~~ Header ~~~~~~~~~~ */
+.header {
+	@include backPattern($header-color);
+	height: 90px;
+	line-height: 90px;
+	color: $white;
+	& .header-logo {
+			font-size: 36px;
+			padding: 0 40px;
+			float: left;
+		}
+	& .header-list {
+		& li {
+		padding: 0 20px;
+		float: left;
+		}
+	}
+}
+
+/* ~~~ Main ~~~~~~~~~~ */
+.main {
+	background-color: $white;
+	flex: 1;
+	padding: 100px 80px;
+}
+
+
+.copy-container {
+	@include backColor;
+	& .h1 {
+		font-size: 120px;
+		font-weight: bolder;
+	}
+	& .h2 {
+		display: inline-block;
+		font-size: 36px;
+		font-weight: bolder;
+	}
+	& span {
+		color: $period-color;
+	}
+}
+
+.contents {
+	@include backColor;
+	height: 300px;
+	margin-top: 100px;
+	& .section-title {
+		@include h3;
+	}
+	& .contents-item {
+		& .content1 {
+			@include content($sample-color1, 42%);
+		}
+		& .content2 {
+			@include content($sample-color2, 40%);
+		}
+		& .content3 {
+			@include content($sample-color3, 18%);
+		}
+		& .content4 {
+			@include content($sample-color1, 42%);
+			margin-right: 0;
+		}
+	}
+}
+
+.contact-form {
+	@include backColor;
+	margin-top: 100px;
+	min-height: 200px;
+	& .section-title {
+		@include h3;
+	}
+	& .form-item {
+		padding-bottom: 10px;
+		font-size: 16px;
+		letter-spacing: 0.05em;
+		color: $text-color;
+	}
+	& input, textarea {
+		width: 400px;
+		padding: 20px;
+		margin-bottom: 30px;
+		border: 1px solid $border-color;
+	}
+	& .form-warning {
+		font-size: 14px;
+		letter-spacing: 0.05em;
+		padding-bottom: 10px;
+	}
+	& .submit-button {
+		letter-spacing: 0.1em;
+		color: $text-color;
+	}
+}
+
+/* ~~~ Footer ~~~~~~~~~~ */
+.footer {
+	@include backPattern($footer-color);
+	height: 200px;
+	line-height: 40px;
+	padding: 40px;
+	color: $white;
+	& .footer-logo {
+		font-size: 32px;
+		float: left;
+	}
+	& .footer-list {
+		float: right;
+	}
+}
